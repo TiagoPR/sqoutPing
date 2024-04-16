@@ -2,6 +2,10 @@
 command-name: "ping"
 description: "Ping a destination address"
 keep-alive: false
+flags-order:
+  - "count"
+  - "timeout"
+  - "destination"
 flags:
   ## The "count" option specifies the number of pings to send.
   count:
