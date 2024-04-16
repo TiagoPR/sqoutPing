@@ -4,19 +4,19 @@ description: "Ping a destination address"
 keep-alive: false
 flags:
   ## The "count" option specifies the number of pings to send.
-  - name: "count"
+  count:
     description: "Number of pings to send"
     type: "string"
     required: true
     prefix: "-c"
   # The "timeout" option specifies the maximum time to wait for a response, in seconds.
-  - name: "timeout"
+  timeout:
     description: "Maximum time to wait for a response, in seconds"
     type: "string"
     required: true
     prefix: "-W"
   # The "destination" option specifies the destination address to ping.
-  - name: "destination"
+  destination:
     description: "Destination address to ping"
     type: "string"
     required: true
