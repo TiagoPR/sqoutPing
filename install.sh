@@ -1,1 +1,2 @@
-# Empty cuz ping comes native, adjust for respective tool
+apt-get update
+apt-get install -y iputils-ping
