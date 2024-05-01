@@ -402,14 +402,15 @@
       "type": "gauge"
     }
   ],
+  "refresh": "",
   "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "2024-04-28T19:26:26.000Z",
-    "to": "2024-04-28T22:12:15.000Z"
+    "from": "2024-04-28T20:40:30.430Z",
+    "to": "2024-04-28T20:51:22.823Z"
   },
   "timepicker": {},
   "timezone": "browser",
