@@ -1,0 +1,420 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 15,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "ddkezs5evxhxca"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "right",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "ddkezs5evxhxca"
+          },
+          "filters": [],
+          "format": "dataframe",
+          "global_query_id": "",
+          "groq": "*",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": true
+          },
+          "parser": "uql",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "uql": "parse-json\n| scope \"Results\"\n| mv-expand \"result\"",
+          "url": "http://backend:8080/probes/TEST?includeResults=true",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "ping - RTT",
+      "transformations": [
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [],
+            "fields": {}
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {
+              "result": 1,
+              "timestamp": 0
+            },
+            "renameByName": {
+              "timestamp": "Time"
+            }
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "format": "json",
+            "jsonPaths": [
+              {
+                "path": "ICMP Sequence"
+              },
+              {
+                "path": "IP Address"
+              },
+              {
+                "path": "TTL"
+              },
+              {
+                "alias": "RTT",
+                "path": "Time"
+              }
+            ],
+            "keepTime": true,
+            "replace": true,
+            "source": "result"
+          }
+        },
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "time",
+                "targetField": "Time"
+              },
+              {
+                "destinationType": "number",
+                "targetField": "TTL"
+              },
+              {
+                "destinationType": "number",
+                "targetField": "RTT"
+              },
+              {
+                "destinationType": "enum",
+                "enumConfig": {
+                  "text": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5"
+                  ]
+                },
+                "targetField": "ICMP Sequence"
+              }
+            ],
+            "fields": {}
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Time",
+                "RTT"
+              ]
+            }
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "ddkezs5evxhxca"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 85
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "",
+          "values": true
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "ddkezs5evxhxca"
+          },
+          "filters": [],
+          "format": "dataframe",
+          "global_query_id": "",
+          "groq": "*",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": true
+          },
+          "parser": "uql",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "uql": "parse-json\n| scope \"Results\"\n| mv-expand \"result\"",
+          "url": "http://backend:8080/probes/TEST?includeResults=true",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "ping - RTT mean",
+      "transformations": [
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [],
+            "fields": {}
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {
+              "result": 1,
+              "timestamp": 0
+            },
+            "renameByName": {
+              "timestamp": "Time"
+            }
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "format": "json",
+            "jsonPaths": [
+              {
+                "path": "ICMP Sequence"
+              },
+              {
+                "path": "IP Address"
+              },
+              {
+                "path": "TTL"
+              },
+              {
+                "alias": "RTT",
+                "path": "Time"
+              }
+            ],
+            "keepTime": true,
+            "replace": true,
+            "source": "result"
+          }
+        },
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "time",
+                "targetField": "Time"
+              },
+              {
+                "destinationType": "number",
+                "targetField": "TTL"
+              },
+              {
+                "destinationType": "number",
+                "targetField": "RTT"
+              },
+              {
+                "destinationType": "enum",
+                "enumConfig": {
+                  "text": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5"
+                  ]
+                },
+                "targetField": "ICMP Sequence"
+              }
+            ],
+            "fields": {}
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "byVariable": false,
+            "include": {
+              "names": [
+                "Time",
+                "RTT"
+              ]
+            }
+          }
+        },
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "mean"
+            ]
+          }
+        }
+      ],
+      "type": "gauge"
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "2024-04-28T19:26:26.000Z",
+    "to": "2024-04-28T22:12:15.000Z"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Ping",
+  "uid": "adkfga1wno0lca",
+  "version": 6,
+  "weekStart": ""
+}
