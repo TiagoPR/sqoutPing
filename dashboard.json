@@ -18,13 +18,12 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 15,
+  "id": 2,
   "links": [],
   "panels": [
     {
       "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "ddkezs5evxhxca"
+        "type": "yesoreyeram-infinity-datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -37,27 +36,16 @@
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
+            "fillOpacity": 80,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
             },
             "thresholdsStyle": {
               "mode": "off"
@@ -88,23 +76,31 @@
       },
       "id": 1,
       "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "right",
-          "showLegend": false
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
         },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "none",
         "tooltip": {
           "mode": "single",
           "sort": "none"
-        }
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
       },
       "targets": [
         {
           "columns": [],
           "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "ddkezs5evxhxca"
+            "type": "yesoreyeram-infinity-datasource"
           },
           "filters": [],
           "format": "dataframe",
@@ -219,12 +215,11 @@
           }
         }
       ],
-      "type": "timeseries"
+      "type": "barchart"
     },
     {
       "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "ddkezs5evxhxca"
+        "type": "yesoreyeram-infinity-datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -274,8 +269,7 @@
         {
           "columns": [],
           "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "ddkezs5evxhxca"
+            "type": "yesoreyeram-infinity-datasource"
           },
           "filters": [],
           "format": "dataframe",
@@ -414,8 +408,8 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Ping",
-  "uid": "adkfga1wno0lca",
-  "version": 6,
+  "title": "TEST",
+  "uid": "TEST",
+  "version": 2,
   "weekStart": ""
 }
